@@ -1,0 +1,279 @@
+<html>
+	<head>
+		<title>Mystery Box</title>
+		<meta name="Author" content="Berto">
+		<script src="js/item.js" type="text/javascript"></script>
+		<script src="js/mystery_box.js" type="text/javascript"></script>
+		<style>
+			html {
+				padding: 0;
+				margin: 0;
+				border: 1px solid black;
+			}
+			body {
+				padding: 0;
+				margin: 0;
+				-moz-user-select: none;
+				-webkit-user-select: none;
+				user-select: none;
+				cursor: default;
+				background: url(images/body.png) no-repeat;
+				background-size: cover;
+			}
+			@font-face {
+				font-family: rotmgfont;
+				src: url('Myriad Pro Bold.ttf') format('truetype');
+			}
+			.active {
+				font-family: rotmgfont;
+				margin: 0 auto;
+				width: 550px;
+				border: 1px solid black;
+				-moz-box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
+				-webkit-box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
+				box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
+				background: #2f2f2f;
+				border-radius: 5px;
+			}
+			.fml-border {
+				border: 2px solid white;
+				border-radius: 5px;
+			}
+			.sexy-top-header {
+				color: #FFCE38;
+				line-height: 23px;
+				font-size: 21px;
+				text-align: center;
+				background: #3f3f3f;
+				height: 25px;
+				border-radius: 5px;
+				border-bottom: 1px solid black;
+			}
+			.shit-won {
+				background: url(images/bg.png) no-repeat;
+				background-size: 100%;
+				min-height: 270px;
+				padding-bottom: 10px;
+			}
+			.items {
+				height: 250px;
+				width: 100%;
+				padding-top: 5px;
+			}
+			.items[data=spin] {
+				background: center url(Webp.net-gifmaker.gif) no-repeat;
+			}
+			.button {
+				background: white;
+				border-radius: 7px;
+				height: 28px;
+				padding: 4px;
+				padding-left: 10px;
+				padding-right: 10px;
+				font-size: 16px;
+				cursor: default;
+				color: #3f3f3f;
+			}
+			.button:hover{
+				background: #FFDC85;
+			}
+			img[src=gold] {
+				position: relative;
+				top: 3px;
+			}
+			ul {
+				padding: 0;
+				list-style-type: none;
+				list-style: none;
+			}
+			.names {
+				height: 105px;
+			}
+			img {
+				-moz-user-select: none;
+				-webkit-user-select: none;
+				user-select: none;
+			}
+			.hide {
+				display: none;
+			}
+			#interface-footer {
+				color: black;
+				font-size: 1.3em;
+			}
+			#current_item {
+				padding-top: 100px;
+			}
+			.settings {
+				font-family: rotmgfont;
+				border: 1px solid gray;
+				background: #2f2f2f;
+				margin: 0 auto;
+				width: 670px;
+				padding: 10px;
+				color: lightgray;
+				margin-bottom: 100px;
+			}
+			.section {
+				border: 1px solid #5e5e5e;
+			}
+			.section-title {
+				border-bottom: 1px solid #5e5e5e;
+				padding: 5px;
+				font-size: 1.3em;
+				background: #3f3f3f;
+			}
+			.section-content {
+				padding: 10px;
+				background: #383838;
+				min-height: 212px;
+			}
+			.section-content[name=pots] {
+				overflow-y: auto;
+				max-height: 212px;
+			}
+			.section-content[name=items] {
+				overflow-y: auto;
+				max-height: 300px;
+			}
+			.settings-header {
+				border-bottom: 1px solid gray;
+			}
+			.item_pot {
+				min-width: 120px;
+				border: 1px solid gray;
+				display: inline-block;
+				background: #2f2f2f;
+				margin-bottom: 4px;
+				margin-right: 4px;
+			}
+			.pot_title {
+				font-family: monospaced;
+				text-align: center;
+				padding: 3px;
+				font-size: 10px;
+				background: #212121;
+				border-bottom: 1px solid gray;
+			}
+			.pot_image {
+				padding-top: 7px;
+				text-align: -webkit-center;
+				display: block;
+			}
+			.remove {
+				padding-top: 7px;
+				text-align: -webkit-center;
+				display: block;
+				padding-bottom: 10px;
+			}
+			.loading {
+				border: 1px solid lightgray;
+				height: 13px;
+				padding: 1px;
+			}
+			.bar {
+				background: lightgray;
+				height: 100%;
+			}
+		</style>
+	</head>
+	<body bgcolor="">
+		<div id="wallahu" style="background-color: rgba(0,0,0,0.8);z-index: 9999;width:100%;height:100%;position:fixed;">
+			<div style="font-family:rotmgfont;z-index:99999;padding:10px;margin: 10% auto; width: 400px;border: 1px solid gray;background:#3f3f3f;color:lightgray">
+				<noscript>the site doesn't work without javascript btw.</noscript>
+				<center>Items Loaded: <span id="items_of">?/?</span> (<span id="percentage">0</span>%)</center>
+				<div class="loading">
+					<div class="bar" id="bar" style="width:0%"></div>
+				</div>
+			</div>
+		</div>
+		<div style="padding-top:50px">
+		<div class="active">
+			<div class="fml-border">
+				<div class="sexy-top-header" id="title">You won!</div>
+				<div class="shit-won">
+					<center>
+						<!-- nice meme :3 -->
+						<div id="fidget" data="spin" class="items">
+							<div id="item_names" class="names">
+								<div>Shaitan's Key</div>
+								<div>Shatters Key</div>
+								<div>Snake Pit Key</div>
+								<div>Spider Den Key</div>
+							</div>
+							<div id="item_images" class="images">
+								<img width="45" height="45" src="http://static.drips.pw/rotmg/wiki/Consumable/Keys/Shaitan's Key.png"/>
+								<img width="45" height="45" src="http://static.drips.pw/rotmg/wiki/Consumable/Keys/Shatters Key.png"/>
+								<img width="45" height="45" src="http://static.drips.pw/rotmg/wiki/Consumable/Keys/Snake Pit Key.png"/>
+								<img width="45" height="45" src="http://static.drips.pw/rotmg/wiki/Consumable/Keys/Spider Den Key.png"/>
+							</div>
+							<div id="current_item" class="hide">
+								<img width="45" height="45" src="http://static.drips.pw/rotmg/wiki/Consumable/Keys/Shatters Key.png"/>
+							</div>
+						</div>
+					</center>
+					<br/>
+					<center>
+						<span onclick="roll();" id="play-again" class="button">Play Again for 0 <img src="gold" /></span>
+						<span id="interface-footer" class="hide">Rewards will be placed in your Vault!</span>
+					</center>
+				</div>
+			</div>
+		</div>
+		</div>
+		<br/>
+			<!-- linebreaks smh -->
+		<br/>
+		<div class="settings">
+			<div id="item_pots" class="section">
+				<div class="section-title">Mystery Box Items</div>
+				<div id="item_pots_content" class="section-content" name="pots">
+					<div id="item_0" class="item_pot">
+						<div class="pot_title">Shaitan's Key</div>
+						<div class="pot_image">
+							<img src="http://static.drips.pw/rotmg/wiki/Consumable/Keys/Shaitan's Key.png"/>
+						</div>
+						<div class="remove">
+							<span onclick="removeItemBox(0);" class="button">Remove</span>
+						</div>
+					</div>
+					<div id="item_1" class="item_pot">
+						<div class="pot_title">Shatters Key</div>
+						<div class="pot_image">
+							<img src="http://static.drips.pw/rotmg/wiki/Consumable/Keys/Shatters Key.png"/>
+						</div>
+						<div class="remove">
+							<span onclick="removeItemBox(1);" class="button">Remove</span>
+						</div>
+					</div>
+					<div id="item_2" class="item_pot">
+						<div class="pot_title">Snake Pit Key</div>
+						<div class="pot_image">
+							<img src="http://static.drips.pw/rotmg/wiki/Consumable/Keys/Snake Pit Key.png"/>
+						</div>
+						<div class="remove">
+							<span onclick="removeItemBox(2);" class="button">Remove</span>
+						</div>
+					</div>
+					<div id="item_3" class="item_pot">
+						<div class="pot_title">Spider Den Key</div>
+						<div class="pot_image">
+							<img src="http://static.drips.pw/rotmg/wiki/Consumable/Keys/Spider Den Key.png"/>
+						</div>
+						<div class="remove">
+							<span onclick="removeItemBox(3);" class="button">Remove</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br/>
+			<div class="section">
+				<div class="section-title">All Items</div>
+				<div id="all_items" class="section-content" name="items"></div>
+			</div>
+			<script type="text/javascript">update_items();</script>
+		</div>
+		<br/>
+		<div style="position:fixed;bottom:0;float:right;color:lightgray">Mystery Box Simulator by troll</div>
+	</body>
+</html>
